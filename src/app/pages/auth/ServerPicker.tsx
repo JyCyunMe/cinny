@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Header,
   Icon,
@@ -77,6 +78,8 @@ export function ServerPicker({
     setServerMenuAnchor(target.getBoundingClientRect());
   };
 
+  const { t } = useTranslation();
+
   return (
     <Input
       ref={serverInputRef}
@@ -109,7 +112,7 @@ export function ServerPicker({
               >
                 <Menu>
                   <Header size="300" style={{ padding: `0 ${config.space.S200}` }}>
-                    <Text size="L400">Homeserver List</Text>
+                    <Text size="L400">{ t('auth.server_picker.homeserver_list') }</Text>
                   </Header>
                   <div style={{ padding: config.space.S100, paddingTop: 0 }}>
                     {serverList?.map((serverName) => (

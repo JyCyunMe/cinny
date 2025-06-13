@@ -1,5 +1,6 @@
 import { lightTheme } from 'folds';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { onDarkFontWeight, onLightFontWeight } from '../../config.css';
 import { butterTheme, darkTheme, silverTheme } from '../../colors.css';
 import { settingsAtom } from '../state/settings';
@@ -44,16 +45,15 @@ export const useThemes = (): Theme[] => {
   return themes;
 };
 
-export const useThemeNames = (): Record<string, string> =>
-  useMemo(
-    () => ({
-      [LightTheme.id]: 'Light',
-      [SilverTheme.id]: 'Silver',
-      [DarkTheme.id]: 'Dark',
-      [ButterTheme.id]: 'Butter',
-    }),
-    []
+export const useThemeNames = (): Record<string, string> => {
+  const { t } = useTranslation();
+  const themes = useThemes();
+
+  return useMemo(() => Object.fromEntries(
+    themes.map(theme => [theme.id, t(`hooks.theme.theme_id.${theme.id}`) ?? theme.id])),
+    [themes, t]
   );
+}
 
 export const useSystemThemeKind = (): ThemeKind => {
   const darkModeQueryList = useMemo(() => window.matchMedia('(prefers-color-scheme: dark)'), []);

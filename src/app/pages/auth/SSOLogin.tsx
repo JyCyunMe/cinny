@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarImage, Box, Button, Text } from 'folds';
 import { IIdentityProvider, createClient } from 'matrix-js-sdk';
 import React, { useMemo } from 'react';
@@ -9,6 +10,7 @@ type SSOLoginProps = {
   saveScreenSpace?: boolean;
 };
 export function SSOLogin({ providers, redirectUrl, saveScreenSpace }: SSOLoginProps) {
+  const { t } = useTranslation();
   const discovery = useAutoDiscoveryInfo();
   const baseUrl = discovery['m.homeserver'].base_url;
   const mx = useMemo(() => createClient({ baseUrl }), [baseUrl]);
@@ -30,7 +32,7 @@ export function SSOLogin({ providers, redirectUrl, saveScreenSpace }: SSOLoginPr
           const { id, name, icon } = provider;
           const iconUrl = icon && mx.mxcUrlToHttp(icon, 96, 96, 'crop', false);
 
-          const buttonTitle = `Continue with ${name}`;
+          const buttonTitle = t('auth.sso_login.continue_with', { name });
 
           if (renderAsIcons) {
             return (
@@ -83,7 +85,7 @@ export function SSOLogin({ providers, redirectUrl, saveScreenSpace }: SSOLoginPr
           outlined
         >
           <Text align="Center" size="B500" truncate>
-            Continue with SSO
+            { t('auth.sso_login.continue_with', { name: 'SSO' }) }
           </Text>
         </Button>
       )}

@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, FormEventHandler, useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IPushRule, IPushRules, PushRuleKind } from 'matrix-js-sdk';
 import { Box, Text, Badge, Button, Input, config, IconButton, Icons, Icon, Spinner } from 'folds';
 import { useAccountData } from '../../../hooks/useAccountData';
@@ -59,6 +60,8 @@ function KeywordInput() {
     addKeyword(k);
   };
 
+  const { t } = useTranslation();
+
   return (
     <Box as="form" onSubmit={handleSubmit} gap="200" aria-disabled={addingKeyword}>
       <Box grow="Yes" direction="Column">
@@ -97,7 +100,7 @@ function KeywordInput() {
         disabled={addingKeyword}
       >
         {addingKeyword && <Spinner variant="Secondary" size="300" />}
-        <Text size="B400">Save</Text>
+        <Text size="B400">{t('settings.notifications.keyword_messages.save_button')}</Text>
       </Button>
     </Box>
   );
@@ -146,6 +149,7 @@ function KeywordModeSwitcher({ pushRule }: PushRulesProps) {
 }
 
 export function KeywordMessagesNotifications() {
+  const { t } = useTranslation();
   const pushRulesEvt = useAccountData(AccountDataEvent.PushRules);
   const pushRules = useMemo(
     () => pushRulesEvt?.getContent<IPushRules>() ?? { global: {} },
@@ -162,9 +166,9 @@ export function KeywordMessagesNotifications() {
   return (
     <Box direction="Column" gap="100">
       <Box alignItems="Center" justifyContent="SpaceBetween" gap="200">
-        <Text size="L400">Keyword Messages</Text>
+        <Text size="L400">{t('settings.notifications.keyword_messages.title')}</Text>
         <Box gap="100">
-          <Text size="T200">Badge: </Text>
+          <Text size="T200">{t('settings.notifications.keyword_messages.badge')}</Text>
           <Badge radii="300" variant="Success" fill="Solid">
             <Text size="L400">1</Text>
           </Badge>
@@ -177,8 +181,8 @@ export function KeywordMessagesNotifications() {
         gap="400"
       >
         <SettingTile
-          title="Select Keyword"
-          description="Set a notification preference for message containing given keyword."
+          title={t('settings.notifications.keyword_messages.select_keyword.title')}
+          description={t('settings.notifications.keyword_messages.select_keyword.desc')}
         >
           <KeywordInput />
         </SettingTile>

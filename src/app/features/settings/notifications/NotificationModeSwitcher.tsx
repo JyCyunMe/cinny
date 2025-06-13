@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Button,
@@ -21,15 +22,16 @@ import { AsyncStatus, useAsyncCallback } from '../../../hooks/useAsyncCallback';
 export const useNotificationModes = (): NotificationMode[] =>
   useMemo(() => [NotificationMode.NotifyLoud, NotificationMode.Notify, NotificationMode.OFF], []);
 
-const useNotificationModeStr = (): Record<NotificationMode, string> =>
-  useMemo(
-    () => ({
-      [NotificationMode.OFF]: 'Disable',
-      [NotificationMode.Notify]: 'Notify Silent',
-      [NotificationMode.NotifyLoud]: 'Notify Loud',
-    }),
-    []
+const useNotificationModeStr = (): Record<NotificationMode, string> => {
+  const { t } = useTranslation();
+  const notificationModes = useNotificationModes();
+
+  return useMemo(() => Object.fromEntries(
+      notificationModes.map(mode =>
+        [mode, t(`settings.notifications.notification_mode.${mode}`) ?? mode])) as Record<NotificationMode, string>,
+    [notificationModes, t]
   );
+}
 
 type NotificationModeSwitcherProps = {
   pushRule: IPushRule;

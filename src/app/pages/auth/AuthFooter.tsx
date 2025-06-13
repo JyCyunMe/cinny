@@ -1,12 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box, Text } from 'folds';
 import * as css from './styles.css';
 
 export function AuthFooter() {
+  const { t } = useTranslation();
+
   return (
     <Box className={css.AuthFooter} justifyContent="Center" gap="400" wrap="Wrap">
       <Text as="a" size="T300" href="https://cinny.in" target="_blank" rel="noreferrer">
-        About
+        {t('auth.footer.about')}
       </Text>
       <Text
         as="a"
@@ -21,7 +24,7 @@ export function AuthFooter() {
         Twitter
       </Text>
       <Text as="a" size="T300" href="https://matrix.org" target="_blank" rel="noreferrer">
-        Powered by Matrix
+        {t('auth.footer.powered_by')}
       </Text>
     </Box>
   );

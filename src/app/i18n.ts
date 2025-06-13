@@ -17,14 +17,26 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init<HttpBackendOptions>({
-    debug: false,
+    debug: true,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
     load: 'languageOnly',
     backend: {
-      loadPath: `${trimTrailingSlash(import.meta.env.BASE_URL)}/public/locales/{{lng}}.json`,
+      // loadPath: `${trimTrailingSlash(import.meta.env.BASE_URL)}/public/locales/{{lng}}.json`,
+      loadPath: (lngs) => {
+        const mapping = {
+          'zh-Hans': ['zh', 'zh-CN', 'zh-MY', 'zh-SG'],
+          'zh-Hant': ['zh-HK', 'zh-MO', 'zh-TW'],
+        }
+        const a = lngs.flatMap(lng =>
+          Object.entries(mapping).find(([key, values]) => {
+            return key === lng || values.includes(lng);
+          })?.[0] ?? lngs[0]
+        )?.[0];
+        return `${trimTrailingSlash(import.meta.env.BASE_URL)}/public/locales/${a}.json`
+      },
     },
   });
 

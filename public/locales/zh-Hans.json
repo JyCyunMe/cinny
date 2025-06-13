@@ -220,7 +220,7 @@
       },
       "credits": {
         "title": "Credits",
-        "credit": "The <project /> is © <owner /> used under the terms of <license />."
+        "credit": "<project /> 由 © <owner /> 发布，并依据 <license /> 许可证 进行使用。"
       }
     }
   },
@@ -228,70 +228,84 @@
     "layout": {
       "name": "Cinny",
       "homeserver": "Homeserver",
-      "looking_for_homeserver": "Looking for homeserver...",
-      "failed_to_find_homeserver": "Failed to find homeserver.",
-      "failed_to_connect_homeserver_configuration_found_unusable": "Failed to connect. Homeserver configuration found with ${autoDiscoveryError.host} appears unusable.",
-      "failed_to_connect_homeserver_configuration_base_url_invalid": "Failed to connect. Homeserver configuration base_url appears invalid.",
-      "connecting_to_homeserver": "Connecting to",
-      "failed_to_connect_homeserver_unavailable_or_not_exist": "Failed to connect. Either homeserver is unavailable at this moment or does not exist.",
-      "loading_authentication_flow": "Loading authentication flow...",
-      "failed_to_get_authentication_flow_information": "Failed to get authentication flow information."
+      "looking_for_homeserver": "正在寻找 homeserver...",
+      "failed_to_find_homeserver": "未能找到 homeserver。",
+      "failed_to_connect_homeserver_configuration_found_unusable": "连接失败。找到的 {{host}} 的 homeserver 配置不可用。",
+      "failed_to_connect_homeserver_configuration_base_url_invalid": "连接失败。homeserver 配置中的 base_url 无效。",
+      "connecting_to_homeserver": "正在连接到",
+      "failed_to_connect_homeserver_unavailable_or_not_exist": "连接失败。homeserver 当前不可用或不存在。",
+      "loading_authentication_flow": "正在加载认证流程...",
+      "failed_to_get_authentication_flow_information": "获取认证流程信息失败。"
     },
     "footer": {
-      "about": "About",
-      "footer": "Powered by Matrix"
+      "about": "关于",
+      "powered_by": "由 Matrix 强力驱动"
     },
     "login": {
-      "title": "Login",
-      "not_support_login": "`This client does not support login on \"{{server}}\" homeserver. Password and SSO based login method not found.`",
-      "have_not_account": "Do not have an account?",
-      "register": "Register",
+      "title": "登录",
+      "not_support_login": "`此客户端不支持在 \"{{server}}\" homeserver 上登录。未找到基于密码或SSO的登录方式。`",
+      "have_not_account": "还没有账号？",
+      "register": "注册",
       "password_login": {
         "username_hit": {
-          "title": "Hint",
-          "username": "Username:"
+          "title": "提示",
+          "username": "用户名："
         },
-        "username": "Username",
-        "client_not_allow_login_with_custom_server": "Login with custom server not allowed by your client instance.",
-        "failed_to_find_matrix_id_server": "Failed to find your Matrix ID server.",
-        "password": "Password",
-        "invalid_username_or_password": "Invalid Username or Password.",
-        "account_has_been_deactivated": "This account has been deactivated.",
-        "failed_to_login_request_data_is_invalid": "Failed to login. Part of your request data is invalid.",
-        "failed_to_login_request_has_been_rate_limited": "Failed to login. Your login request has been rate-limited by server, Please try after some time.",
-        "failed_to_login_unknown_reason": "Failed to login. Unknown reason.",
-        "forget_password": "Forget Password?",
-        "login_button": "Login"
+        "username": "用户名",
+        "client_not_allow_login_with_custom_server": "您的客户端不允许使用自定义服务器登录。",
+        "failed_to_find_matrix_id_server": "无法找到您的 Matrix ID 服务器。",
+        "password": "密码",
+        "invalid_username_or_password": "用户名或密码错误。",
+        "account_has_been_deactivated": "该账户已被停用。",
+        "failed_to_login_request_data_is_invalid": "登录失败。部分请求数据无效。",
+        "failed_to_login_request_has_been_rate_limited": "登录失败。您的登录请求被服务器限流，请稍后再试。",
+        "failed_to_login_unknown_reason": "登录失败，原因未知。",
+        "forget_password": "忘记密码？",
+        "login_button": "登录"
       },
       "token_login": {
-        "title": "Token Login",
-        "invalid_login_token": "Invalid login token.",
-        "account_has_been_deactivated": "This account has been deactivated.",
-        "failed_to_login_request_data_is_invalid": "Failed to login. Part of your request data is invalid.",
-        "failed_to_login_request_has_been_rate_limited": "Failed to login. Your login request has been rate-limited by server, Please try after some time.",
-        "failed_to_login_unknown_reason": "Failed to login. Unknown reason."
+        "title": "令牌登录",
+        "invalid_login_token": "无效的登录令牌。",
+        "account_has_been_deactivated": "该账户已被停用。",
+        "failed_to_login_request_data_is_invalid": "登录失败。部分请求数据无效。",
+        "failed_to_login_request_has_been_rate_limited": "登录失败。您的登录请求被服务器限流，请稍后再试。",
+        "failed_to_login_unknown_reason": "登录失败，原因未知。"
       }
     },
     "reset_password": {
-      "title": "Reset Password",
-      "remember_password": "Remember your password?",
-      "login": "Login",
+      "title": "重置密码",
+      "remember_password": "还记得密码？",
+      "login": "登录",
       "completed": {
-        "success": "Password has been reset successfully. Please login with your new password.",
-        "login_button": "Login"
+        "success": "密码已成功重置。请使用新密码登录。",
+        "login_button": "登录"
       }
     },
     "register": {
-      "title": "Register",
-      "homeserver_disabled_registration": "Registration has been disabled on this homeserver.",
-      "request_has_been_rate_limited": "You have been rate-limited! Please try after some time.",
-      "invalid_request_failed_to_get_any_registration_options": "Invalid Request! Failed to get any registration options.",
-      "application_not_support_homeserver_registration": "This application does not support registration on this homeserver.",
-      "already_have_account": "Already have an account?",
-      "login": "Login",
+      "title": "注册",
+      "homeserver_disabled_registration": "该 homeserver 上已禁用注册。",
+      "request_has_been_rate_limited": "操作频繁！请稍后再试。",
+      "invalid_request_failed_to_get_any_registration_options": "无效请求！未能获取任何注册选项。",
+      "application_not_support_homeserver_registration": "此应用不支持在该 homeserver 上注册。",
+      "already_have_account": "已有账号？",
+      "login": "登录",
       "password_register": {
-        "username": ""
+        "username": "Username",
+
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "accept_server_terms": "I accept server <termLink>Terms and Conditions</termLink>.",
+        "register": "Register"
       }
+    },
+    "or_divider": {
+      "or": "OR"
+    },
+    "server_picker": {
+      "homeserver_list": "Homeserver List"
+    },
+    "sso_login": {
+      "continue_with": "Continue with {name}"
     }
   }
 }
