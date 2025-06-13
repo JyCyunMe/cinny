@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Avatar,
   Box,
@@ -248,6 +249,8 @@ function RoomNotificationsGroupComp({
     [mx, room, linkifyOpts, mentionClickHandler, spoilerClickHandler, useAuthentication]
   );
 
+  const { t } = useTranslation();
+
   const renderMatrixEvent = useMatrixEventRenderer<[IRoomEvent, string, GetContentCallback]>(
     {
       [MessageEvent.RoomMessage]: (event, displayName, getContent) => {
@@ -365,7 +368,7 @@ function RoomNotificationsGroupComp({
         return (
           <Box grow="Yes" direction="Column">
             <Text size="T400" priority="300">
-              Room Tombstone. {content.body}
+              { t('client.inbox.notifications.room_tombstone') } {content.body}
             </Text>
           </Box>
         );
@@ -422,7 +425,7 @@ function RoomNotificationsGroupComp({
               onClick={handleMarkAsRead}
               before={<Icon size="100" src={Icons.CheckTwice} />}
             >
-              <Text size="T200">Mark as Read</Text>
+              <Text size="T200">{ t('client.inbox.notifications.group_comp.mark_as_read') }</Text>
             </Chip>
           )}
         </Box>
@@ -505,7 +508,7 @@ function RoomNotificationsGroupComp({
                       variant="Secondary"
                       radii="400"
                     >
-                      <Text size="T200">Open</Text>
+                      <Text size="T200">{ t('client.inbox.notifications.group_comp.open') }</Text>
                     </Chip>
                   </Box>
                 </Box>
@@ -614,6 +617,8 @@ export function Notifications() {
     }
   }, [timelineState, notificationTimeline, lastVItemIndex, loadTimeline]);
 
+  const { t } = useTranslation();
+
   return (
     <Page>
       <PageHeader balance>
@@ -632,7 +637,7 @@ export function Notifications() {
           <Box alignItems="Center" gap="200">
             {screenSize !== ScreenSize.Mobile && <Icon size="400" src={Icons.Message} />}
             <Text size="H3" truncate>
-              Notification Messages
+              { t('client.inbox.notifications.header') }
             </Text>
           </Box>
           <Box grow="Yes" basis="No" />
@@ -646,7 +651,7 @@ export function Notifications() {
               <Box direction="Column" gap="200">
                 <Box ref={scrollTopAnchorRef} direction="Column" gap="100">
                   <span data-spacing-node />
-                  <Text size="L400">Filter</Text>
+                  <Text size="L400">{ t('client.inbox.notifications.filter') }</Text>
                   <Box gap="200">
                     <Chip
                       onClick={() => setOnlyHighlighted(false)}
@@ -655,7 +660,7 @@ export function Notifications() {
                       before={!onlyHighlight && <Icon size="100" src={Icons.Check} />}
                       outlined
                     >
-                      <Text size="T200">All Notifications</Text>
+                      <Text size="T200">{ t('client.inbox.notifications.all_notifications') }</Text>
                     </Chip>
                     <Chip
                       onClick={() => setOnlyHighlighted(true)}
@@ -664,7 +669,7 @@ export function Notifications() {
                       before={onlyHighlight && <Icon size="100" src={Icons.Check} />}
                       outlined
                     >
-                      <Text size="T200">Highlighted</Text>
+                      <Text size="T200">{ t('client.inbox.notifications.highlighted') }</Text>
                     </Chip>
                   </Box>
                 </Box>
@@ -679,7 +684,7 @@ export function Notifications() {
                     radii="Pill"
                     outlined
                     size="300"
-                    aria-label="Scroll to Top"
+                    aria-label={ t('client.inbox.notifications.scroll_to_top_button') }
                   >
                     <Icon src={Icons.ChevronTop} size="300" />
                   </IconButton>
@@ -730,9 +735,9 @@ export function Notifications() {
                       direction="Column"
                       gap="200"
                     >
-                      <Text>No Notifications</Text>
+                      <Text>{ t('client.inbox.notifications.empty.title') }</Text>
                       <Text size="T200">
-                        You don&apos;t have any new notifications to display yet.
+                        { t('client.inbox.notifications.empty.subTitle') }
                       </Text>
                     </Box>
                   )}

@@ -175,7 +175,7 @@ export function AuthLayout() {
                     baseUrl={autoDiscoveryInfo['m.homeserver'].base_url}
                     fallback={() => (
                       <AuthLayoutLoading
-                        message={`Connecting to ${autoDiscoveryInfo['m.homeserver'].base_url}`}
+                        message={`${ t('auth.layout.connecting_to_homeserver') } ${autoDiscoveryInfo['m.homeserver'].base_url}`}
                       />
                     )}
                     error={() => (

@@ -36,7 +36,8 @@
           "title": "Page Zoom"
         },
         "display_language": {
-          "title": "Display Language"
+          "title": "Display Language",
+          "system": "Following system"
         }
       },
       "editor": {
@@ -92,6 +93,7 @@
           "title": "Avatar",
           "remove_avatar": "Remove Avatar",
           "remove_avatar_confirmation": "Are you sure you want to remove profile avatar?",
+          "upload_button": "Upload",
           "remove_button": "Remove"
         },
         "display_name": {
@@ -290,7 +292,261 @@
       "already_have_account": "Already have an account?",
       "login": "Login",
       "password_register": {
-        "username": ""
+        "username": "Username",
+        "username_error": {
+          "username_already_taken": "This username is already taken.",
+          "username_contains_invalid_characters": "This username contains invalid characters.",
+          "username_reserved": "This username is reserved."
+        },
+        "password": "Password",
+        "password_error": {
+          "weak_password": "Weak Password. Password rejected by server please choosing more strong Password.",
+          "short_password": "Short Password. Password rejected by server please choosing more long Password."
+        },
+        "confirm_password": "Confirm Password",
+        "registration_token": "Registration Token",
+        "registration_token_optional": "Registration Token (Optional)",
+        "email": "Email",
+        "email_optional": "Email (Optional)",
+        "accept_server_terms": "I accept server <termLink>Terms and Conditions</termLink>.",
+        "failed_to_register_has_been_rate_limited": "Failed to register. Your register request has been rate-limited by server, Please try after some time.",
+        "failed_to_register_homeserver_not_permit_registration": "Failed to register. The homeserver does not permit registration.",
+        "failed_to_register_invalid_request": "Failed to register. Invalid request.",
+        "failed_to_register_unknown_reason": "Failed to register. Unknown Reason.",
+        "register": "Register"
+      }
+    },
+    "or_divider": {
+      "or": "OR"
+    },
+    "server_picker": {
+      "homeserver_list": "Homeserver List"
+    },
+    "sso_login": {
+      "continue_with": "Continue with {name}"
+    }
+  },
+
+  "config": {
+    "splash_screen": {
+      "heating_up": "Heating up",
+      "failed_to_load_client_configuration_file": "Failed to load client configuration file.",
+      "retry_button": "Retry",
+      "continue_button": "Continue"
+    }
+  },
+  "feature_check": {
+    "missing_browser_feature": "Missing Browser Feature",
+    "no_indexeddb_support_found": "No IndexedDB support found. This application requires IndexedDB to store session\n                data locally. Please make sure your browser support IndexedDB and have it enabled.",
+    "what_is_indexeddb": "What is IndexedDB?"
+  },
+  "router": {
+    "page_not_found": "Page not found"
+  },
+  "client": {
+    "client_root_non_ui_features": {
+      "invite_notifications": {
+        "title": "Invitation",
+        "body": "You have {{count}} new invitation request."
+      },
+      "message_notifications": {
+        "body": "New inbox notification from {{username}}"
+      }
+    },
+    "client_root": {
+      "loading": {
+        "heating_up": "Heating up"
+      },
+      "options": {
+        "clear_cache_and_reload": "Clear Cache and Reload",
+        "logout": "Logout"
+      },
+      "failed_to_load": "Failed to load. {{message}}",
+      "failed_to_start": "Failed to start. {{message}}",
+      "retry_button": "Retry"
+    },
+    "spec_versions": {
+      "connecting_to_server": "Connecting to server",
+      "failed_to_connect_to_homeserver_network_down": "Failed to connect to homeserver. Either homeserver is down or your internet.",
+      "retry_button": "Retry",
+      "continue_button": "Continue"
+    },
+    "sync_status": {
+      "connecting": "Connecting...",
+      "connection_lost_reconnecting": "Connection Lost! Reconnecting...",
+      "connection_lost": "Connection Lost!"
+    },
+    "welcome_page": {
+      "title": "Welcome to Cinny",
+      "subTitle": "Yet another matrix client.",
+      "source_code_button": "Source Code",
+      "support_button": "Support"
+    },
+    "direct": {
+      "direct": {
+        "header": "Direct Messages",
+        "menu": {
+          "mark_as_read": "Mark as Read"
+        },
+        "create_chat": "Create Chat",
+        "chats": "Chats",
+        "empty": {
+          "title": "No Direct Messages",
+          "content": "You do not have any direct messages yet.",
+          "options": {
+            "direct_message_button": "Direct Message"
+          }
+        }
+      }
+    },
+    "explore": {
+
+    },
+
+    "home": {
+      "home": {
+        "header": "Home",
+        "menu": {
+          "mark_as_read": "Mark as Read",
+          "join_with_address": "Join with Address"
+        },
+        "create_room": "Create Room",
+        "join_with_address": "Join with Address",
+        "message_search": "Message Search",
+        "rooms": "Rooms",
+        "empty": {
+          "title": "No Rooms",
+          "content": "You do not have any rooms yet.",
+          "options": {
+            "create_room_button": "Create Room",
+            "explore_community_rooms_button": "Explore Community Rooms"
+          }
+        }
+      },
+      "search": {
+        "header": "Message Search"
+      }
+    },
+    "inbox": {
+      "inbox": {
+        "header": "Inbox",
+        "invites": "Invites",
+        "notifications": "Notifications"
+      },
+      "invites": {
+        "header": "Invites",
+        "filter": "Filter",
+        "card": {
+          "encrypted": "Encrypted",
+          "direct_message": "Direct Message",
+          "space": "Space",
+          "decline_button": "Decline",
+          "accept_button": "Accept",
+          "from_sender": "From:"
+        },
+        "filters": {
+          "primary": "Primary",
+          "public": "Public",
+          "spam": "Spam"
+        },
+        "known_invites": {
+          "primary": "Primary",
+          "empty": {
+            "title": "No Invites",
+            "subTitle": "When someone you share a room with sends you an invite, it’ll show up here."
+          }
+        },
+        "unknown_invites": {
+          "public": "Public",
+          "decline_all": "Decline All",
+          "empty": {
+            "title": "No Invites",
+            "subTitle": "Invites from people outside your rooms will appear here."
+          }
+        },
+        "spam_invites": {
+          "spam": "Spam",
+          "title": "{{invites}} Spam Invites",
+          "subTitle": "Some of the following invites may contain harmful content or have been sent by banned users.",
+          "decline_all": "Decline All",
+          "report_all": "Report All",
+          "block_all": "Block All",
+          "hide_all_button": "Hide All",
+          "view_all_button": "View All",
+          "empty": {
+            "title": "No Spam Invites",
+            "subTitle": "Invites detected as spam appear here."
+          }
+        }
+      },
+      "notifications": {
+        "header": "Notification Messages",
+        "filter": "Filter",
+        "all_notifications": "All Notifications",
+        "highlighted": "Highlighted",
+        "scroll_to_top_button": "Scroll to Top",
+        "empty": {
+          "title": "No Notifications",
+          "subTitle": "You don't have any new notifications to display yet."
+        },
+        "room_tombstone": "Room Tombstone.",
+        "group_comp": {
+          "mark_as_read": "Mark as Read",
+          "open": "Open"
+        }
+      }
+    },
+    "sidebar": {
+      "direct": {
+        "menu": {
+          "mark_as_read": "Mark as Read"
+        },
+        "tooltip": "Direct Messages"
+      },
+      "explore": {
+        "tooltip": "Explore Community"
+      },
+      "home": {
+        "menu": {
+          "mark_as_read": "Mark as Read"
+        },
+        "tooltip": "Home"
+      },
+      "inbox": {
+        "tooltip": "Inbox"
+      },
+      "space": {
+        "menu": {
+          "mark_as_read": "Mark as Read",
+          "unpin": "Unpin",
+          "invite": "Invite",
+          "copy_link": "Copy Link",
+          "space_settings": "Space Settings"
+        }
+      },
+      "unverified": {
+        "unverified_device": {
+          "one": "Unverified Device",
+          "other": "Unverified Devices"
+        }
+      }
+    },
+    "space": {
+      "search": {
+        "title": "Message Search"
+      },
+      "space": {
+        "menu": {
+          "mark_as_read": "Mark as Read",
+          "invite": "Invite",
+          "copy_link": "Copy Link",
+          "space_settings": "Space Settings",
+          "event_timeline": "Event Timeline",
+          "leave_space": "Leave Space"
+        },
+        "lobby": "Lobby",
+        "message_search": "Message Search",
+        "rooms": "Rooms"
       }
     }
   }

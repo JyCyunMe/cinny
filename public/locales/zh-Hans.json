@@ -4,222 +4,229 @@
       "changed_room_name": " changed room name"
     }
   },
+  "features": {
+    "settings": {
+      "account": {
+        "profile": {
+        }
+      }
+    }
+  },
   "hooks": {
     "theme": {
       "theme_id": {
-        "light-theme": "Light",
-        "silver-theme": "Silver",
-        "dark-theme": "Dark",
-        "butter-theme": "Butter"
+        "light-theme": "浅色",
+        "silver-theme": "银色",
+        "dark-theme": "深色",
+        "butter-theme": "黄油色"
       }
     }
   },
   "settings": {
     "general": {
-      "title": "General",
+      "title": "常规",
       "appearance": {
-        "title": "Appearance",
+        "title": "外观",
         "system_theme": {
-          "title": "System Theme",
-          "desc": "Choose between light and dark theme based on system preference."
+          "title": "系统主题",
+          "desc": "根据系统偏好选择浅色或深色主题。"
         },
         "theme": {
-          "title": "Theme",
-          "desc": "Theme to use when system theme is not enabled."
+          "title": "主题",
+          "desc": "当未启用系统主题时使用的主题。"
         },
-        "light_theme": "Light Theme:",
-        "dark_theme": "Dark Theme:",
+        "light_theme": "浅色主题：",
+        "dark_theme": "深色主题：",
         "twitter_emoji": {
-          "title": "Twitter Emoji"
+          "title": "Twitter 表情符号"
         },
         "page_zoom": {
-          "title": "Page Zoom"
+          "title": "页面缩放"
         },
         "display_language": {
-          "title": "Display Language"
+          "title": "显示语言",
+          "system": "跟随系统"
         }
       },
       "editor": {
-        "title": "Editor",
+        "title": "编辑器",
         "enter_for_newline": {
-          "title": "ENTER for Newline",
-          "desc": "Use {{key}} + ENTER to send message and ENTER for newline."
+          "title": "ENTER 键换行",
+          "desc": "使用 {{key}} + ENTER 发送消息，使用 ENTER 键换行。"
         },
         "markdown_formatting": {
-          "title": "Markdown Formatting"
+          "title": "Markdown 格式"
         },
         "hide_typing_and_read_receipts": {
-          "title": "Hide Typing & Read Receipts",
-          "desc": "Turn off both typing status and read receipts to keep your activity private."
+          "title": "隐藏输入状态和已读回执",
+          "desc": "关闭输入状态和已读回执，以保持活动的隐私。"
         }
       },
       "messages": {
-        "title": "Messages",
+        "title": "消息",
         "message_layout": {
-          "title": "Message Layout"
+          "title": "消息布局"
         },
         "message_spacing": {
-          "title": "Message Spacing"
+          "title": "消息间距"
         },
         "legacy_username_color": {
-          "title": "Legacy Username Color"
+          "title": "旧版用户名颜色"
         },
         "hide_membership_change": {
-          "title":"Hide Membership Change"
+          "title": "隐藏成员变化"
         },
         "hide_profile_change": {
-          "title": "Hide Profile Change"
+          "title": "隐藏资料变化"
         },
         "disable_media_auto_load": {
-          "title": "Disable Media Auto Load"
+          "title": "禁用媒体自动加载"
         },
         "url_preview": {
-          "title": "Url Preview"
+          "title": "网址预览"
         },
         "url_preview_in_encrypted_room": {
-          "title": "Url Preview in Encrypted Room"
+          "title": "加密房间中的网址预览"
         },
         "show_hidden_events": {
-          "title": "Show Hidden Events"
+          "title": "显示隐藏事件"
         }
       }
     },
     "account": {
-      "title": "Account",
+      "title": "账户",
       "profile": {
-        "title": "Profile",
+        "title": "个人资料",
         "avatar": {
-          "title": "Avatar",
-          "remove_avatar": "Remove Avatar",
-          "remove_avatar_confirmation": "Are you sure you want to remove profile avatar?",
-          "remove_button": "Remove"
+          "title": "头像",
+          "remove_avatar": "移除头像",
+          "remove_avatar_confirmation": "确定要移除个人资料头像吗？",
+          "upload_button": "上传",
+          "remove_button": "移除"
         },
         "display_name": {
-          "title": "Display Name",
-          "save_button": "Save"
+          "title": "显示名称",
+          "save_button": "保存"
         },
         "Matrix ID": {
           "title": "Matrix ID",
-          "copy_button": "Copy"
+          "copy_button": "复制"
         },
         "contact_information": {
-          "title": "Contact Information",
+          "title": "联系方式",
           "email_address": {
-            "title": "Email Address",
-            "desc": "Email address attached to your account."
+            "title": "电子邮件地址",
+            "desc": "附加到您账户的电子邮件地址。"
           }
         },
         "ignored_user_list": {
-          "title": "Blocked Users",
+          "title": "封锁用户",
           "select_user": {
-            "title": "Select User",
-            "desc": "Prevent receiving messages or invites from user by adding their userId."
+            "title": "选择用户",
+            "desc": "通过添加用户的 userId 来阻止接收来自该用户的消息或邀请。"
           },
-          "block_button": "Block"
+          "block_button": "封锁"
         }
       }
     },
     "notifications": {
-      "title": "Notifications",
+      "title": "通知",
       "block_messages": {
-        "title": "Block Messages",
-        "desc": "This option has been moved to \"Account > Block Users\" section."
+        "title": "封锁消息",
+        "desc": "此选项已移动至 \"账户 > 封锁用户\" 部分。"
       },
       "email_notification": {
-        "app_display_name": "Email Notifications",
+        "app_display_name": "电子邮件通知",
         "brand": "Cinny",
-        "title": "Email Notification",
-        "have_not_any_email": "Your account does not have any email attached.",
-        "send_notification": "Send notification to your email.",
-        "unexpected_error": "Unexpected Error!"
+        "title": "电子邮件通知",
+        "have_not_any_email": "您的账户没有附加任何电子邮件。",
+        "send_notification": "向您的电子邮件发送通知。",
+        "unexpected_error": "意外错误！"
       },
       "system_notifications": {
-        "title": "System",
+        "title": "系统",
         "desktop_notifications": {
-          "title": "Desktop Notifications",
+          "title": "桌面通知",
           "desc": {
-            "normal": "Show desktop notifications when message arrive.",
-            "no_permission": "Notification permission is blocked. Please allow notification permission from browser address bar.",
-            "not_supported": "Notifications are not supported by the system."
+            "normal": "当有新消息时显示桌面通知。",
+            "no_permission": "通知权限被阻止。请在浏览器地址栏允许通知权限。",
+            "not_supported": "系统不支持通知。"
           },
-          "enable_button": "Enable"
+          "enable_button": "启用"
         },
         "notification_sound": {
-          "title": "Notification Sound",
-          "desc": "Play sound when new message arrive."
+          "title": "通知声音",
+          "desc": "当新消息到达时播放声音。"
         }
       },
       "all_messages": {
-        "title": "All Messages",
-        "badge": "Badge: ",
+        "title": "所有消息",
+        "badge": "徽章：",
         "1_to_1_chats": {
-          "title": "1-to-1 Chats"
+          "title": "私聊"
         },
         "1_to_1_chats_encrypted": {
-          "title": "1-to-1 Chats (Encrypted)"
+          "title": "私聊（加密）"
         },
         "rooms": {
-          "title": "Rooms"
+          "title": "房间"
         },
         "rooms_encrypted": {
-          "title": "Rooms (Encrypted)"
+          "title": "房间（加密）"
         }
       },
       "special_messages": {
-        "title": "Special Messages",
-        "badge": "Badge: ",
+        "title": "特殊消息",
+        "badge": "徽章：",
         "mention_user_id": {
-          "title": "Mention User ID"
+          "title": "提及用户ID"
         },
         "contains_displayname": {
-          "title": "Contains Displayname"
+          "title": "包含显示名称"
         },
         "contains_username": {
-          "title": "Contains Username"
+          "title": "包含用户名"
         },
         "mention_at_room": {
-          "title": "Mention @room"
+          "title": "提及 @room"
         },
         "contains_at_room": {
-          "title": "Contains @room"
+          "title": "包含 @room"
         }
       },
       "keyword_messages": {
-        "title": "Keyword Messages",
-        "badge": "Badge: ",
+        "title": "关键词消息",
+        "badge": "徽章：",
         "select_keyword": {
-          "title": "Select Keyword",
-          "desc": "Set a notification preference for message containing given keyword."
+          "title": "选择关键词",
+          "desc": "设置包含给定关键词的消息的通知偏好。"
         },
-        "save_button": "Save"
+        "save_button": "保存"
       },
       "notification_mode": {
-        "OFF": "Disable",
-        "Notify": "Notify Silent",
-        "NotifyLoud": "Notify Loud"
+        "OFF": "禁用",
+        "Notify": "静音通知",
+        "NotifyLoud": "响亮通知"
       }
-
     },
-
-
     "about": {
-      "title": "About",
+      "title": "关于",
       "info": {
         "name": "Cinny",
-        "desc": "Yet another matrix client.",
-        "source_code": "Source Code",
-        "support": "Support"
+        "desc": "另一个 Matrix 客户端。",
+        "source_code": "源代码",
+        "support": "支持"
       },
       "options": {
-        "title": "Options",
+        "title": "选项",
         "clear_cache_and_reload": {
-          "title": "Clear Cache & Reload",
-          "desc": "Clear all your locally stored data and reload from server.",
-          "clear_cache_button": "Clear Cache"
+          "title": "清除缓存并重新加载",
+          "desc": "清除所有本地存储的数据并从服务器重新加载。",
+          "clear_cache_button": "清除缓存"
         }
       },
       "credits": {
-        "title": "Credits",
+        "title": "致谢",
         "credit": "<project /> 由 © <owner /> 发布，并依据 <license /> 许可证 进行使用。"
       }
     }
@@ -290,22 +297,262 @@
       "already_have_account": "已有账号？",
       "login": "登录",
       "password_register": {
-        "username": "Username",
-
-        "password": "Password",
-        "confirm_password": "Confirm Password",
-        "accept_server_terms": "I accept server <termLink>Terms and Conditions</termLink>.",
-        "register": "Register"
+        "username": "用户名",
+        "username_error": {
+          "username_already_taken": "此用户名已被占用。",
+          "username_contains_invalid_characters": "此用户名包含无效字符。",
+          "username_reserved": "此用户名已被保留。"
+        },
+        "password": "密码",
+        "password_error": {
+          "weak_password": "密码太弱。服务器拒绝该密码，请选择更强的密码。",
+          "short_password": "密码太短。服务器拒绝该密码，请选择更长的密码。"
+        },
+        "confirm_password": "确认密码",
+        "registration_token": "注册令牌",
+        "registration_token_optional": "注册令牌（可选）",
+        "email": "电子邮件",
+        "email_optional": "电子邮件（可选）",
+        "accept_server_terms": "我接受服务器的 <termLink>服务条款</termLink>。",
+        "failed_to_register_has_been_rate_limited": "注册失败。您的注册请求已被服务器限速，请稍后再试。",
+        "failed_to_register_homeserver_not_permit_registration": "注册失败。家庭服务器不允许注册。",
+        "failed_to_register_invalid_request": "注册失败。请求无效。",
+        "failed_to_register_unknown_reason": "注册失败。未知原因。",
+        "register": "注册"
       }
     },
     "or_divider": {
-      "or": "OR"
+      "or": "或"
     },
     "server_picker": {
-      "homeserver_list": "Homeserver List"
+      "homeserver_list": "家庭服务器列表"
     },
     "sso_login": {
-      "continue_with": "Continue with {name}"
+      "continue_with": "使用 {{name}} 继续"
+    }
+  },
+
+  "config": {
+    "splash_screen": {
+      "heating_up": "正在预热",
+      "failed_to_load_client_configuration_file": "加载客户端配置文件失败。",
+      "retry_button": "重试",
+      "continue_button": "继续"
+    }
+  },
+  "feature_check": {
+    "missing_browser_feature": "缺少浏览器功能",
+    "no_indexeddb_support_found": "未找到 IndexedDB 支持。此应用需要 IndexedDB 来本地存储会话数据。请确保您的浏览器支持 IndexedDB 并已启用。",
+    "what_is_indexeddb": "什么是 IndexedDB?"
+  },
+  "router": {
+    "page_not_found": "页面未找到"
+  },
+  "client": {
+    "client_root_non_ui_features": {
+      "invite_notifications": {
+        "title": "邀请",
+        "body": "您有 {{count}} 个新的邀请请求。"
+      },
+      "message_notifications": {
+        "body": "来自 {{username}} 的新收件箱通知"
+      }
+    },
+    "client_root": {
+      "loading": {
+        "heating_up": "正在预热"
+      },
+      "options": {
+        "clear_cache_and_reload": "清除缓存并重新加载",
+        "logout": "退出登录"
+      },
+      "failed_to_load": "加载失败。{{message}}",
+      "failed_to_start": "启动失败。{{message}}",
+      "retry_button": "重试"
+    },
+    "spec_versions": {
+      "connecting_to_server": "正在连接到服务器",
+      "failed_to_connect_to_homeserver_network_down": "连接到 homeserver 失败。可能是 homeserver 已关闭或您的互联网连接问题。",
+      "retry_button": "重试",
+      "continue_button": "继续"
+    },
+    "sync_status": {
+      "connecting": "连接中...",
+      "connection_lost_reconnecting": "连接丢失！正在重新连接...",
+      "connection_lost": "连接丢失！"
+    },
+    "welcome_page": {
+      "title": "欢迎使用 Cinny",
+      "subTitle": "另一个 Matrix 客户端。",
+      "source_code_button": "源代码",
+      "support_button": "支持"
+    },
+    "direct": {
+      "direct": {
+        "header": "私聊",
+        "menu": {
+          "mark_as_read": "标记为已读"
+        },
+        "create_chat": "创建聊天",
+        "chats": "聊天",
+        "empty": {
+          "title": "没有私聊",
+          "content": "您还没有任何私聊。",
+          "options": {
+            "direct_message_button": "私聊"
+          }
+        }
+      }
+    },
+    "explore": {
+
+    },
+
+    "home": {
+      "home": {
+        "header": "首页",
+        "menu": {
+          "mark_as_read": "标记为已读",
+          "join_with_address": "通过地址加入"
+        },
+        "create_room": "创建房间",
+        "join_with_address": "通过地址加入",
+        "message_search": "消息搜索",
+        "rooms": "房间",
+        "empty": {
+          "title": "没有房间",
+          "content": "您还没有任何房间。",
+          "options": {
+            "create_room_button": "创建房间",
+            "explore_community_rooms_button": "探索社区房间"
+          }
+        }
+      },
+      "search": {
+        "header": "消息搜索"
+      }
+    },
+    "inbox": {
+      "inbox": {
+        "header": "收件箱",
+        "invites": "邀请",
+        "notifications": "通知"
+      },
+      "invites": {
+        "header": "邀请",
+        "filter": "筛选",
+        "card": {
+          "encrypted": "加密",
+          "direct_message": "私聊",
+          "space": "空间",
+          "decline_button": "拒绝",
+          "accept_button": "接受",
+          "from_sender": "来自："
+        },
+        "filters": {
+          "primary": "主要",
+          "public": "公开",
+          "spam": "垃圾邮件"
+        },
+        "known_invites": {
+          "primary": "主要",
+          "empty": {
+            "title": "没有邀请",
+            "subTitle": "当您共享房间的某人向您发送邀请时，它会出现在这里。"
+          }
+        },
+        "unknown_invites": {
+          "public": "公开",
+          "decline_all": "全部拒绝",
+          "empty": {
+            "title": "没有邀请",
+            "subTitle": "来自您房间外的人的邀请会出现在这里。"
+          }
+        },
+        "spam_invites": {
+          "spam": "垃圾邮件",
+          "title": "{{invites}} 个垃圾邮件邀请",
+          "subTitle": "以下一些邀请可能包含有害内容或来自被禁止的用户。",
+          "decline_all": "全部拒绝",
+          "report_all": "全部举报",
+          "block_all": "全部封锁",
+          "hide_all_button": "隐藏所有",
+          "view_all_button": "查看全部",
+          "empty": {
+            "title": "没有垃圾邮件邀请",
+            "subTitle": "检测为垃圾邮件的邀请会出现在这里。"
+          }
+        }
+      },
+      "notifications": {
+        "header": "通知消息",
+        "filter": "筛选",
+        "all_notifications": "所有通知",
+        "highlighted": "突出显示",
+        "scroll_to_top_button": "滚动到顶部",
+        "empty": {
+          "title": "没有通知",
+          "subTitle": "您没有任何新的通知。"
+        },
+        "room_tombstone": "房间墓碑。",
+        "group_comp": {
+          "mark_as_read": "标记为已读",
+          "open": "打开"
+        }
+      }
+    },
+    "sidebar": {
+      "direct": {
+        "menu": {
+          "mark_as_read": "标记为已读"
+        },
+        "tooltip": "私聊"
+      },
+      "explore": {
+        "tooltip": "探索社区"
+      },
+      "home": {
+        "menu": {
+          "mark_as_read": "标记为已读"
+        },
+        "tooltip": "首页"
+      },
+      "inbox": {
+        "tooltip": "收件箱"
+      },
+      "space": {
+        "menu": {
+          "mark_as_read": "标记为已读",
+          "unpin": "取消固定",
+          "invite": "邀请",
+          "copy_link": "复制链接",
+          "space_settings": "空间设置"
+        }
+      },
+      "unverified": {
+        "unverified_device": {
+          "one": "未验证设备",
+          "other": "未验证设备"
+        }
+      }
+    },
+    "space": {
+      "search": {
+        "title": "消息搜索"
+      },
+      "space": {
+        "menu": {
+          "mark_as_read": "标记为已读",
+          "invite": "邀请",
+          "copy_link": "复制链接",
+          "space_settings": "空间设置",
+          "event_timeline": "事件时间线",
+          "leave_space": "离开空间"
+        },
+        "lobby": "大厅",
+        "message_search": "消息搜索",
+        "rooms": "房间"
+      }
     }
   }
 }

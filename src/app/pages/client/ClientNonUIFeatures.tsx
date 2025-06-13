@@ -26,6 +26,7 @@ import { getMxIdLocalPart, mxcUrlToHttp } from '../../utils/matrix';
 import { useSelectedRoom } from '../../hooks/router/useSelectedRoom';
 import { useInboxNotificationsSelected } from '../../hooks/router/useInbox';
 import { useMediaAuthentication } from '../../hooks/useMediaAuthentication';
+import { useTranslation } from 'react-i18next';
 
 function SystemEmojiFeature() {
   const [twitterEmoji] = useSetting(settingsAtom, 'twitterEmoji');
@@ -77,6 +78,8 @@ function FaviconUpdater() {
 }
 
 function InviteNotifications() {
+  const { t } = useTranslation();
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const invites = useAtomValue(allInvitesAtom);
   const perviousInviteLen = usePreviousValue(invites.length, 0);
@@ -88,10 +91,10 @@ function InviteNotifications() {
 
   const notify = useCallback(
     (count: number) => {
-      const noti = new window.Notification('Invitation', {
+      const noti = new window.Notification(t('client.client_root_non_ui_features.invite_notifications.title'), {
         icon: LogoSVG,
         badge: LogoSVG,
-        body: `You have ${count} new invitation request.`,
+        body: t('client.client_root_non_ui_features.invite_notifications.body', { count }),
         silent: true,
       });
 
@@ -100,7 +103,7 @@ function InviteNotifications() {
         noti.close();
       };
     },
-    [navigate]
+    [t, navigate]
   );
 
   const playSound = useCallback(() => {
@@ -129,6 +132,8 @@ function InviteNotifications() {
 }
 
 function MessageNotifications() {
+  const { t } = useTranslation();
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const notifRef = useRef<Notification>();
   const unreadCacheRef = useRef<Map<string, UnreadInfo>>(new Map());
@@ -156,7 +161,7 @@ function MessageNotifications() {
       const noti = new window.Notification(roomName, {
         icon: roomAvatar,
         badge: roomAvatar,
-        body: `New inbox notification from ${username}`,
+        body: t('client.client_root_non_ui_features.message_notifications.body', { username }),
         silent: true,
       });
 
@@ -169,7 +174,7 @@ function MessageNotifications() {
       notifRef.current?.close();
       notifRef.current = noti;
     },
-    [navigate]
+    [t, navigate]
   );
 
   const playSound = useCallback(() => {

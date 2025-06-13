@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   Box,
   Button,
@@ -261,7 +261,7 @@ export function PasswordRegisterForm({
       <Box as="form" onSubmit={handleSubmit} direction="Inherit" gap="400">
         <Box direction="Column" gap="100">
           <Text as="label" size="L400" priority="300">
-            { t('auth.register.password_register.username') }
+            {t('auth.register.password_register.username')}
           </Text>
           <Input
             variant="Background"
@@ -272,13 +272,15 @@ export function PasswordRegisterForm({
             required
           />
           {registerError?.errcode === RegisterError.UserTaken && (
-            <FieldError message="This username is already taken." />
+            <FieldError
+              message={t('auth.register.password_register.username_error.username_already_taken')}
+            />
           )}
           {registerError?.errcode === RegisterError.UserInvalid && (
-            <FieldError message="This username contains invalid characters." />
+            <FieldError message={ t('auth.register.password_register.username_error.username_contains_invalid_characters') } />
           )}
           {registerError?.errcode === RegisterError.UserExclusive && (
-            <FieldError message="This username is reserved." />
+            <FieldError message={ t('auth.register.password_register.username_error.username_reserved') } />
           )}
         </Box>
         <ConfirmPasswordMatch initialValue>
@@ -286,7 +288,7 @@ export function PasswordRegisterForm({
             <>
               <Box direction="Column" gap="100">
                 <Text as="label" size="L400" priority="300">
-                  { t('auth.register.password_register.password') }
+                  {t('auth.register.password_register.password')}
                 </Text>
                 <PasswordInput
                   ref={passRef}
@@ -301,7 +303,7 @@ export function PasswordRegisterForm({
                   <FieldError
                     message={
                       registerError.data.error ??
-                      'Weak Password. Password rejected by server please choosing more strong Password.'
+                      t('auth.register.password_register.password_error.weak_password')
                     }
                   />
                 )}
@@ -309,14 +311,14 @@ export function PasswordRegisterForm({
                   <FieldError
                     message={
                       registerError.data.error ??
-                      'Short Password. Password rejected by server please choosing more long Password.'
+                      t('auth.register.password_register.password_error.short_password')
                     }
                   />
                 )}
               </Box>
               <Box direction="Column" gap="100">
                 <Text as="label" size="L400" priority="300">
-                  { t('auth.register.password_register.confirm_password') }
+                  {t('auth.register.password_register.confirm_password')}
                 </Text>
                 <PasswordInput
                   ref={confPassRef}
@@ -336,8 +338,8 @@ export function PasswordRegisterForm({
           <Box direction="Column" gap="100">
             <Text as="label" size="L400" priority="300">
               {requiredStageInFlows(uiaFlows, AuthType.RegistrationToken)
-                ? 'Registration Token'
-                : 'Registration Token (Optional)'}
+                ? t('auth.register.password_register.registration_token')
+                : t('auth.register.password_register.registration_token_optional')}
             </Text>
             <Input
               variant="Background"
@@ -352,7 +354,9 @@ export function PasswordRegisterForm({
         {hasStageInFlows(uiaFlows, AuthType.Email) && (
           <Box direction="Column" gap="100">
             <Text as="label" size="L400" priority="300">
-              {requiredStageInFlows(uiaFlows, AuthType.Email) ? 'Email' : 'Email (Optional)'}
+              {requiredStageInFlows(uiaFlows, AuthType.Email)
+                ? t('auth.register.password_register.email')
+                : t('auth.register.password_register.email_optional')}
             </Text>
             <Input
               variant="Background"
@@ -370,30 +374,45 @@ export function PasswordRegisterForm({
           <Box alignItems="Center" gap="200">
             <Checkbox name="termsInput" size="300" variant="Primary" required />
             <Text size="T300">
-              I accept server{' '}
-              <a href={termUrl} target="_blank" rel="noreferrer">
-                Terms and Conditions
-              </a>
-              .
+              <Trans
+                i18nKey="auth.register.password_register.accept_server_terms"
+                components={{
+                  // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/control-has-associated-label
+                  termLink: <a href={termUrl} target="_blank" rel="noreferrer" />
+                }}
+              />
             </Text>
           </Box>
         )}
         {registerError?.errcode === RegisterError.RateLimited && (
-          <FieldError message="Failed to register. Your register request has been rate-limited by server, Please try after some time." />
+          <FieldError
+            message={t('auth.register.password_register.failed_to_register_has_been_rate_limited')}
+          />
         )}
         {registerError?.errcode === RegisterError.Forbidden && (
-          <FieldError message="Failed to register. The homeserver does not permit registration." />
+          <FieldError
+            message={t(
+              'auth.register.password_register.failed_to_register_homeserver_not_permit_registration'
+            )}
+          />
         )}
         {registerError?.errcode === RegisterError.InvalidRequest && (
-          <FieldError message="Failed to register. Invalid request." />
+          <FieldError
+            message={t('auth.register.password_register.failed_to_register_invalid_request')}
+          />
         )}
         {registerError?.errcode === RegisterError.Unknown && (
-          <FieldError message={registerError.data.error ?? 'Failed to register. Unknown Reason.'} />
+          <FieldError
+            message={
+              registerError.data.error ??
+              t('auth.register.password_register.failed_to_register_unknown_reason')
+            }
+          />
         )}
         <span data-spacing-node />
         <Button variant="Primary" size="500" type="submit">
           <Text as="span" size="B500">
-            { t('auth.register.password_register.register') }
+            {t('auth.register.password_register.register')}
           </Text>
         </Button>
       </Box>

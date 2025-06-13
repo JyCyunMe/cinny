@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import { Language } from './i18n';
 
 const STORAGE_KEY = 'settings';
 export type MessageSpacing = '0' | '100' | '200' | '300' | '400' | '500';
@@ -24,6 +25,7 @@ export interface Settings {
   enterForNewline: boolean;
   messageLayout: MessageLayout;
   messageSpacing: MessageSpacing;
+  displayLanguage: Language;
   hideMembershipEvents: boolean;
   hideNickAvatarEvents: boolean;
   mediaAutoLoad: boolean;
@@ -54,6 +56,7 @@ const defaultSettings: Settings = {
   enterForNewline: false,
   messageLayout: 0,
   messageSpacing: '400',
+  displayLanguage: Language.English,
   hideMembershipEvents: false,
   hideNickAvatarEvents: true,
   mediaAutoLoad: true,

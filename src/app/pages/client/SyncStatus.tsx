@@ -1,5 +1,6 @@
 import { MatrixClient, SyncState } from 'matrix-js-sdk';
 import React, { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box, config, Line, Text } from 'folds';
 import { useSyncState } from '../../hooks/useSyncState';
 import { ContainerColor } from '../../styles/ContainerColor.css';
@@ -13,6 +14,8 @@ type SyncStatusProps = {
   mx: MatrixClient;
 };
 export function SyncStatus({ mx }: SyncStatusProps) {
+  const { t } = useTranslation();
+
   const [stateData, setStateData] = useState<StateData>({
     current: null,
     previous: undefined,
@@ -44,7 +47,7 @@ export function SyncStatus({ mx }: SyncStatusProps) {
           alignItems="Center"
           justifyContent="Center"
         >
-          <Text size="L400">Connecting...</Text>
+          <Text size="L400">{ t('client.sync_status.connecting') }</Text>
         </Box>
         <Line variant="Success" size="300" />
       </Box>
@@ -60,7 +63,7 @@ export function SyncStatus({ mx }: SyncStatusProps) {
           alignItems="Center"
           justifyContent="Center"
         >
-          <Text size="L400">Connection Lost! Reconnecting...</Text>
+          <Text size="L400">{ t('client.sync_status.connection_lost_reconnecting') }</Text>
         </Box>
         <Line variant="Warning" size="300" />
       </Box>
@@ -76,7 +79,7 @@ export function SyncStatus({ mx }: SyncStatusProps) {
           alignItems="Center"
           justifyContent="Center"
         >
-          <Text size="L400">Connection Lost!</Text>
+          <Text size="L400">{ t('client.sync_status.connection_lost') }</Text>
         </Box>
         <Line variant="Critical" size="300" />
       </Box>

@@ -1,8 +1,8 @@
 import React, {
   ChangeEventHandler,
   KeyboardEventHandler,
-  MouseEventHandler,
-  useState,
+  MouseEventHandler, useEffect, useMemo,
+  useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -30,6 +30,7 @@ import { Page, PageContent, PageHeader } from '../../../components/page';
 import { SequenceCard } from '../../../components/sequence-card';
 import { useSetting } from '../../../state/hooks/settings';
 import { MessageLayout, MessageSpacing, settingsAtom } from '../../../state/settings';
+import { Language } from '../../../state/i18n';
 import { SettingTile } from '../../../components/setting-tile';
 import { KeySymbol } from '../../../utils/key-symbol';
 import { isMacOS } from '../../../utils/user-agent';
@@ -46,6 +47,7 @@ import { stopPropagation } from '../../../utils/keyboard';
 import { useMessageLayoutItems } from '../../../hooks/useMessageLayout';
 import { useMessageSpacingItems } from '../../../hooks/useMessageSpacing';
 import { SequenceCardStyle } from '../styles.css';
+import { DisplayLanguageItem, useDisplayLanguageItems } from '../../../hooks/useDisplayLanguage';
 
 type ThemeSelectorProps = {
   themeNames: Record<string, string>;
@@ -300,7 +302,99 @@ function PageZoomInput() {
   );
 }
 
+function SelectDisplayLanguage() {
+  const { i18n } = useTranslation();
+
+  const [menuCords, setMenuCords] = useState<RectCords>();
+  const [displayLanguage, setDisplayLanguage] = useSetting(settingsAtom, 'displayLanguage');
+  const displayLanguageItems = useDisplayLanguageItems();
+
+  const handleMenu: MouseEventHandler<HTMLButtonElement> = (evt) => {
+    setMenuCords(evt.currentTarget.getBoundingClientRect());
+  };
+
+  const handleSelect = (language?: Language) => {
+    setDisplayLanguage(language);
+    setMenuCords(undefined);
+  };
+
+  useEffect(() => {
+    if (displayLanguage) {
+      i18n.changeLanguage(displayLanguage);
+    } else {
+      // i18n.changeLanguage('');
+      // i18n.reloadResources();
+      // i18n.changeLanguage(i18n.language);
+    }
+  }, [i18n, displayLanguage])
+
+  const formattedLanguageItem = (item: DisplayLanguageItem) =>
+    item.language ? `${item.localName} (${item.language})` : item.localName
+
+  const currentLanguageItem = useMemo(() => {
+    const item = displayLanguageItems.find((i) =>
+      i.language === displayLanguage);
+    return item ? formattedLanguageItem(item) : displayLanguage;
+  }, [displayLanguageItems, displayLanguage])
+
+  return (
+    <>
+      <Button
+        size="300"
+        variant="Secondary"
+        outlined
+        fill="Soft"
+        radii="300"
+        after={<Icon size="300" src={Icons.ChevronBottom} />}
+        onClick={handleMenu}
+      >
+        <Text size="T300">
+          {currentLanguageItem}
+        </Text>
+      </Button>
+      <PopOut
+        anchor={menuCords}
+        offset={5}
+        position="Bottom"
+        align="End"
+        content={
+          <FocusTrap
+            focusTrapOptions={{
+              initialFocus: false,
+              onDeactivate: () => setMenuCords(undefined),
+              clickOutsideDeactivates: true,
+              isKeyForward: (evt: KeyboardEvent) =>
+                evt.key === 'ArrowDown' || evt.key === 'ArrowRight',
+              isKeyBackward: (evt: KeyboardEvent) =>
+                evt.key === 'ArrowUp' || evt.key === 'ArrowLeft',
+              escapeDeactivates: stopPropagation,
+            }}
+          >
+            <Menu>
+              <Box direction="Column" gap="100" style={{ padding: config.space.S100 }}>
+                {displayLanguageItems.map((item) => (
+                  <MenuItem
+                    key={ item.language ?? '-' }
+                    size="300"
+                    variant={(displayLanguage ? (displayLanguage === item.language) : !item.language) ? 'Primary' : 'Surface'}
+                    radii="300"
+                    onClick={() => handleSelect(item.language)}
+                  >
+                    <Text size="T300">{formattedLanguageItem(item)}</Text>
+                  </MenuItem>
+                ))}
+              </Box>
+            </Menu>
+          </FocusTrap>
+        }
+      />
+    </>
+  );
+}
+
 function Appearance() {
+  const { t } = useTranslation();
+
   const [systemTheme, setSystemTheme] = useSetting(settingsAtom, 'useSystemTheme');
   const [twitterEmoji, setTwitterEmoji] = useSetting(settingsAtom, 'twitterEmoji');
 
@@ -323,7 +417,7 @@ function Appearance() {
 
       <SequenceCard className={SequenceCardStyle} variant="SurfaceVariant" direction="Column">
         <SettingTile
-          title={t('settings.general.appearance.theme')}
+          title={t('settings.general.appearance.theme.title')}
           description={t('settings.general.appearance.theme.desc')}
           after={<SelectTheme disabled={systemTheme} />}
         />
@@ -341,13 +435,15 @@ function Appearance() {
       </SequenceCard>
 
       <SequenceCard className={SequenceCardStyle} variant="SurfaceVariant" direction="Column">
-        <SettingTile title={t('settings.general.appearance.display_language.title')} />
+        <SettingTile title={t('settings.general.appearance.display_language.title')} after={<SelectDisplayLanguage />} />
       </SequenceCard>
     </Box>
   );
 }
 
 function Editor() {
+  const { t } = useTranslation();
+
   const [enterForNewline, setEnterForNewline] = useSetting(settingsAtom, 'enterForNewline');
   const [isMarkdown, setIsMarkdown] = useSetting(settingsAtom, 'isMarkdown');
   const [hideActivity, setHideActivity] = useSetting(settingsAtom, 'hideActivity');
@@ -519,6 +615,8 @@ function SelectMessageSpacing() {
 }
 
 function Messages() {
+  const { t } = useTranslation();
+
   const [legacyUsernameColor, setLegacyUsernameColor] = useSetting(
     settingsAtom,
     'legacyUsernameColor'
@@ -621,6 +719,8 @@ type GeneralProps = {
   requestClose: () => void;
 };
 export function General({ requestClose }: GeneralProps) {
+  const { t } = useTranslation();
+
   return (
     <Page>
       <PageHeader outlined={false}>

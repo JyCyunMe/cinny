@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Avatar,
   Badge,
@@ -139,6 +140,8 @@ type InviteCardProps = {
   hideAvatar: boolean;
 };
 function InviteCard({ invite, compact, onNavigate, hideAvatar }: InviteCardProps) {
+  const { t } = useTranslation();
+
   const mx = useMatrixClient();
   const userId = mx.getSafeUserId();
 
@@ -180,21 +183,21 @@ function InviteCard({ invite, compact, onNavigate, hideAvatar }: InviteCardProps
           {invite.isEncrypted && (
             <Box shrink="No" alignItems="Center" justifyContent="Center">
               <Badge variant="Success" fill="Solid" size="400" radii="300">
-                <Text size="L400">Encrypted</Text>
+                <Text size="L400">{ t('client.inbox.invites.card.encrypted') }</Text>
               </Badge>
             </Box>
           )}
           {invite.isDirect && (
             <Box shrink="No" alignItems="Center" justifyContent="Center">
               <Badge variant="Primary" fill="Solid" size="400" radii="300">
-                <Text size="L400">Direct Message</Text>
+                <Text size="L400">{ t('client.inbox.invites.card.direct_message') }</Text>
               </Badge>
             </Box>
           )}
           {invite.isSpace && (
             <Box shrink="No" alignItems="Center" justifyContent="Center">
               <Badge variant="Secondary" fill="Soft" size="400" radii="300">
-                <Text size="L400">Space</Text>
+                <Text size="L400">{ t('client.inbox.invites.card.space') }</Text>
               </Badge>
             </Box>
           )}
@@ -270,7 +273,7 @@ function InviteCard({ invite, compact, onNavigate, hideAvatar }: InviteCardProps
               disabled={joining || leaving}
               before={leaving ? <Spinner variant="Secondary" size="100" /> : undefined}
             >
-              <Text size="B300">Decline</Text>
+              <Text size="B300">{ t('client.inbox.invites.card.decline_button') }</Text>
             </Button>
             <Button
               onClick={join}
@@ -282,7 +285,7 @@ function InviteCard({ invite, compact, onNavigate, hideAvatar }: InviteCardProps
               disabled={joining || leaving}
               before={joining ? <Spinner variant="Success" fill="Soft" size="100" /> : undefined}
             >
-              <Text size="B300">Accept</Text>
+              <Text size="B300">{ t('client.inbox.invites.card.accept_button') }</Text>
             </Button>
           </Box>
         </Box>
@@ -290,7 +293,7 @@ function InviteCard({ invite, compact, onNavigate, hideAvatar }: InviteCardProps
       <Box gap="200" alignItems="Baseline">
         <Box grow="Yes">
           <Text size="T200" priority="300">
-            From: <b>{invite.senderId}</b>
+            { t('client.inbox.invites.card.from_sender') } <b>{invite.senderId}</b>
           </Text>
         </Box>
         {invite.inviteTs && (
@@ -326,6 +329,8 @@ function InviteFilters({
   const isUnknown = filter === InviteFilter.Unknown;
   const isSpam = filter === InviteFilter.Spam;
 
+  const { t } = useTranslation();
+
   return (
     <Box gap="200">
       <Chip
@@ -342,7 +347,7 @@ function InviteFilters({
           )
         }
       >
-        <Text size="T200">Primary</Text>
+        <Text size="T200">{ t('client.inbox.invites.filters.primary') }</Text>
       </Chip>
       <Chip
         variant={isUnknown ? 'Warning' : 'Surface'}
@@ -358,7 +363,7 @@ function InviteFilters({
           )
         }
       >
-        <Text size="T200">Public</Text>
+        <Text size="T200">{ t('client.inbox.invites.filters.public') }</Text>
       </Chip>
       <Chip
         variant={isSpam ? 'Critical' : 'Surface'}
@@ -374,7 +379,7 @@ function InviteFilters({
           )
         }
       >
-        <Text size="T200">Spam</Text>
+        <Text size="T200">{ t('client.inbox.invites.filters.spam') }</Text>
       </Chip>
     </Box>
   );
@@ -386,9 +391,11 @@ type KnownInvitesProps = {
   compact: boolean;
 };
 function KnownInvites({ invites, handleNavigate, compact }: KnownInvitesProps) {
+  const { t } = useTranslation();
+
   return (
     <Box direction="Column" gap="200">
-      <Text size="H4">Primary</Text>
+      <Text size="H4">{ t('client.inbox.invites.known_invites.primary') }</Text>
       {invites.length > 0 ? (
         <Box direction="Column" gap="100">
           {invites.map((invite) => (
@@ -406,8 +413,8 @@ function KnownInvites({ invites, handleNavigate, compact }: KnownInvitesProps) {
           <PageHeroSection>
             <PageHero
               icon={<Icon size="600" src={Icons.Mail} />}
-              title="No Invites"
-              subTitle="When someone you share a room with sends you an invite, it’ll show up here."
+              title={ t('client.inbox.invites.known_invites.empty.title') }
+              subTitle={ t('client.inbox.invites.known_invites.empty.subTitle') }
             />
           </PageHeroSection>
         </PageHeroEmpty>
@@ -422,6 +429,8 @@ type UnknownInvitesProps = {
   compact: boolean;
 };
 function UnknownInvites({ invites, handleNavigate, compact }: UnknownInvitesProps) {
+  const { t } = useTranslation();
+
   const mx = useMatrixClient();
 
   const [declineAllStatus, declineAll] = useAsyncCallback(
@@ -437,7 +446,7 @@ function UnknownInvites({ invites, handleNavigate, compact }: UnknownInvitesProp
   return (
     <Box direction="Column" gap="200">
       <Box gap="200" justifyContent="SpaceBetween" alignItems="Center">
-        <Text size="H4">Public</Text>
+        <Text size="H4">{ t('client.inbox.invites.unknown_invites.public') }</Text>
         <Box>
           {invites.length > 0 && (
             <Chip
@@ -447,7 +456,7 @@ function UnknownInvites({ invites, handleNavigate, compact }: UnknownInvitesProp
               disabled={declining}
               radii="Pill"
             >
-              <Text size="T200">Decline All</Text>
+              <Text size="T200">{ t('client.inbox.invites.unknown_invites.decline_all') }</Text>
             </Chip>
           )}
         </Box>
@@ -469,8 +478,8 @@ function UnknownInvites({ invites, handleNavigate, compact }: UnknownInvitesProp
           <PageHeroSection>
             <PageHero
               icon={<Icon size="600" src={Icons.Info} />}
-              title="No Invites"
-              subTitle="Invites from people outside your rooms will appear here."
+              title={ t('client.inbox.invites.unknown_invites.empty.title') }
+              subTitle={ t('client.inbox.invites.unknown_invites.empty.subTitle') }
             />
           </PageHeroSection>
         </PageHeroEmpty>
@@ -485,6 +494,8 @@ type SpamInvitesProps = {
   compact: boolean;
 };
 function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
+  const { t } = useTranslation();
+
   const mx = useMatrixClient();
   const [showInvites, setShowInvites] = useState(false);
 
@@ -524,7 +535,7 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
 
   return (
     <Box direction="Column" gap="200">
-      <Text size="H4">Spam</Text>
+      <Text size="H4">{ t('client.inbox.invites.spam_invites.spam') }</Text>
       {invites.length > 0 ? (
         <Box direction="Column" gap="100">
           <SequenceCard
@@ -536,8 +547,8 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
             <PageHeroSection>
               <PageHero
                 icon={<Icon size="600" src={Icons.Warning} />}
-                title={`${invites.length} Spam Invites`}
-                subTitle="Some of the following invites may contain harmful content or have been sent by banned users."
+                title={ t('client.inbox.invites.spam_invites.title', { invites: invites.length }) }
+                subTitle={ t('client.inbox.invites.spam_invites.subTitle') }
               >
                 <Box direction="Row" gap="200" justifyContent="Center" wrap="Wrap">
                   <Button
@@ -550,7 +561,7 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
                     disabled={loading}
                   >
                     <Text size="B300" truncate>
-                      Decline All
+                      { t('client.inbox.invites.spam_invites.decline_all') }
                     </Text>
                   </Button>
                   {reportRoomSupported && reportAllStatus.status !== AsyncStatus.Success && (
@@ -564,7 +575,7 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
                       disabled={loading}
                     >
                       <Text size="B300" truncate>
-                        Report All
+                        { t('client.inbox.invites.spam_invites.report_all') }
                       </Text>
                     </Button>
                   )}
@@ -579,7 +590,7 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
                       before={blocking && <Spinner size="100" variant="Secondary" fill="Solid" />}
                     >
                       <Text size="B300" truncate>
-                        Block All
+                        { t('client.inbox.invites.spam_invites.block_all') }
                       </Text>
                     </Button>
                   )}
@@ -597,7 +608,7 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
                   }
                   onClick={() => setShowInvites(!showInvites)}
                 >
-                  <Text size="B300">{showInvites ? 'Hide All' : 'View All'}</Text>
+                  <Text size="B300">{showInvites ? t('client.inbox.invites.spam_invites.hide_all_button') : t('client.inbox.invites.spam_invites.view_all_button') }</Text>
                 </Button>
               </PageHero>
             </PageHeroSection>
@@ -618,8 +629,8 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
           <PageHeroSection>
             <PageHero
               icon={<Icon size="600" src={Icons.Warning} />}
-              title="No Spam Invites"
-              subTitle="Invites detected as spam appear here."
+              title={ t('client.inbox.invites.spam_invites.empty.title') }
+              subTitle={ t('client.inbox.invites.spam_invites.empty.subTitle') }
             />
           </PageHeroSection>
         </PageHeroEmpty>
@@ -629,6 +640,8 @@ function SpamInvites({ invites, handleNavigate, compact }: SpamInvitesProps) {
 }
 
 export function Invites() {
+  const { t } = useTranslation();
+
   const mx = useMatrixClient();
   const useAuthentication = useMediaAuthentication();
   const { navigateRoom, navigateSpace } = useRoomNavigate();
@@ -697,7 +710,7 @@ export function Invites() {
           <Box alignItems="Center" gap="200">
             {screenSize !== ScreenSize.Mobile && <Icon size="400" src={Icons.Mail} />}
             <Text size="H3" truncate>
-              Invites
+              { t('client.inbox.invites.header') }
             </Text>
           </Box>
           <Box grow="Yes" basis="No" />
@@ -710,7 +723,7 @@ export function Invites() {
               <Box ref={containerRef} direction="Column" gap="600">
                 <Box direction="Column" gap="100">
                   <span data-spacing-node />
-                  <Text size="L400">Filter</Text>
+                  <Text size="L400">{ t('client.inbox.invites.filter') }</Text>
                   <InviteFilters
                     filter={filter}
                     onFilter={setFilter}

@@ -125,7 +125,7 @@ function ProfileAvatar({ profile, userId }: ProfileProps) {
             radii="300"
             disabled={disableSetAvatar}
           >
-            <Text size="B300">Upload</Text>
+            <Text size="B300">{ t('settings.account.profile.avatar.upload_button') }</Text>
           </Button>
           {avatarUrl && (
             <Button
@@ -136,7 +136,7 @@ function ProfileAvatar({ profile, userId }: ProfileProps) {
               disabled={disableSetAvatar}
               onClick={() => setAlertRemove(true)}
             >
-              <Text size="B300">Remove</Text>
+              <Text size="B300">{ t('settings.account.profile.avatar.remove_button') }</Text>
             </Button>
           )}
         </Box>

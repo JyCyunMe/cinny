@@ -3,6 +3,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { trimTrailingSlash } from './utils/common';
+import { useSetting } from './state/hooks/settings';
+import { settingsAtom } from './state/settings';
 
 i18n
   // i18next-http-backend
@@ -24,16 +26,14 @@ i18n
     },
     load: 'languageOnly',
     backend: {
-      // loadPath: `${trimTrailingSlash(import.meta.env.BASE_URL)}/public/locales/{{lng}}.json`,
       loadPath: (lngs) => {
         const mapping = {
           'zh-Hans': ['zh', 'zh-CN', 'zh-MY', 'zh-SG'],
           'zh-Hant': ['zh-HK', 'zh-MO', 'zh-TW'],
         }
         const a = lngs.flatMap(lng =>
-          Object.entries(mapping).find(([key, values]) => {
-            return key === lng || values.includes(lng);
-          })?.[0] ?? lngs[0]
+          Object.entries(mapping).find(([key, values]) =>
+            key === lng || values.includes(lng))?.[0] ?? lngs[0]
         )?.[0];
         return `${trimTrailingSlash(import.meta.env.BASE_URL)}/public/locales/${a}.json`
       },
